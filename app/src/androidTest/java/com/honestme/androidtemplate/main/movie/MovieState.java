@@ -1,4 +1,4 @@
-package com.honestme.androidtemplate.movie;
+package com.honestme.androidtemplate.main.movie;
 
 import android.graphics.Movie;
 

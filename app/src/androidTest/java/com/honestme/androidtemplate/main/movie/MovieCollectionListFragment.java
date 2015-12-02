@@ -1,4 +1,4 @@
-package com.honestme.androidtemplate.movie;
+package com.honestme.androidtemplate.main.movie;
 
 import android.app.ListFragment;
 import android.graphics.Movie;
