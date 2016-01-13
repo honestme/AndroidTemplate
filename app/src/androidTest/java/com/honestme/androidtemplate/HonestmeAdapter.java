@@ -44,7 +44,7 @@ public abstract class HonestmeAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        HonestmeViewHolder viewHolder = new HonestmeViewHolder(mContext,parent,mResourceId);
+        HonestmeViewHolder viewHolder = HonestmeViewHolder.getViewHolder(mContext,convertView,parent,mResourceId);
         populateUi(viewHolder,(T)getItem(position));
         return viewHolder.getConvertView();
     }

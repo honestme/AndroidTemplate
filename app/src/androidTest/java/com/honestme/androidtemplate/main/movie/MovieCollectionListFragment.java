@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/11/30 0030.
  */
-public class MovieCollectionListFragment extends ListFragment implements MovieController.MovieUi{
+public class MovieCollectionListFragment extends ListFragment implements MoviePresenter.MovieUi{
 
-    MovieController mMovieController;
+    MoviePresenter mMovieController;
 
-    private MovieController.MovieUiCallBacks mMovieUiCallBacks;
+    private MoviePresenter.MovieUiCallBacks mMovieUiCallBacks;
 
-    private MovieAdapter mMovieAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,8 +29,6 @@ public class MovieCollectionListFragment extends ListFragment implements MovieCo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mMovieAdapter = new MovieAdapter(getActivity());
-        this.setListAdapter(mMovieAdapter);
 
         setListShown(false);
     }
@@ -51,12 +49,11 @@ public class MovieCollectionListFragment extends ListFragment implements MovieCo
 
     @Override
     public void setCollection(List<Movie> collection) {
-        mMovieAdapter.setSource(collection);
         setListShown(true);
     }
 
     @Override
-    public void setCallBack(MovieController.MovieUiCallBacks callbacks) {
+    public void setCallBack(MoviePresenter.MovieUiCallBacks callbacks) {
         mMovieUiCallBacks = callbacks;
     }
 

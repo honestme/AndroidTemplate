@@ -16,17 +16,18 @@ public class HonestmeViewHolder {
     private View mConvertView;
 
     public HonestmeViewHolder(Context context,ViewGroup viewGroup,int layoutId){
+        mSparseArray = new SparseArray<View>();
         mConvertView = LayoutInflater.from(context).inflate(layoutId,viewGroup);
         mConvertView.setTag(this);
     }
 
-    public HonestmeViewHolder getViewHolder(Context context,ViewGroup viewGroup,int layoutId){
+    public static HonestmeViewHolder getViewHolder(Context context,View convertView,ViewGroup viewGroup,int layoutId){
 
-        if(mConvertView == null){
+        if(convertView == null){
             return new HonestmeViewHolder(context,viewGroup,layoutId);
         }
 
-        return (HonestmeViewHolder)mConvertView.getTag();
+        return (HonestmeViewHolder)convertView.getTag();
     }
 
     public void setItems(SparseArray<View> sparseArray){
@@ -38,6 +39,7 @@ public class HonestmeViewHolder {
 
         if(view == null){
             view = mConvertView.findViewById(resourceId);
+            mSparseArray.put(resourceId,view);
         }
         return view;
     }

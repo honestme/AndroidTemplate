@@ -1,35 +1,17 @@
 package com.honestme.androidtemplate.login;
 
-import com.honestme.androidtemplate.BaseState;
-import com.squareup.otto.Bus;
-
 /**
  * Created by Administrator on 2015/11/30 0030.
  */
-public class LoginState extends BaseState{
+public interface LoginState{
+    public void loginIn(String userName,String passWord,LoginCallbacks loginCallbacks);
 
-    private String mUserName;
-    private String mPassWord;
+    public String getUserName();
 
-    public LoginState(Bus bus) {
-        super(bus);
+    public String getHashPassword();
+
+    public interface LoginCallbacks{
+        void loginSuccess();
+        void loginFailed();
     }
-
-    public String getUserName(){
-        return mUserName;
-    }
-
-    public String getHashPassword(){
-        return mPassWord;
-    }
-
-    public void setCredentials(String userName, String passWord){
-        mUserName = userName;
-        mPassWord = passWord;
-        mBus.post(new UserLoginEvent());
-    }
-
-    public static class UserLoginEvent{}
-
-
 }

@@ -7,50 +7,46 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by Administrator on 2015/11/26 0026.
  */
-public class BaseActivity extends AppCompatActivity implements BaseUiController.HostCallbacks{
+public abstract class BaseActivity extends AppCompatActivity implements BaseUiPresenter.HostCallbacks{
 
     private Context mContext;
-    BaseUiController mController;
-    BaseDisplay mDisplay;
+    BaseUiPresenter mPresenter;
+    ApplicationDisplay mDisplay = new ApplicationDisplay();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutResource());
 
-        handleIntent(mContext,mDisplay);
+        handleIntent(mContext, mDisplay);
     }
 
     @Override
     protected void onPause() {
-        mController.suspend();
-        mController.detachDisplay(mDisplay);
-        mController.setHostCallbacks(null);
+        mPresenter.suspend();
+        mPresenter.setHostCallbacks(null);
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mController.populateUi();
-        mController.attachDisplay(mDisplay);
-        mController.setHostCallbacks(this);
+        mPresenter.populateUi();
+        mPresenter.setHostCallbacks(this);
     }
 
-    protected void setController(BaseUiController controller){
-        mController = controller;
+    protected void init(BaseUiPresenter controller,BaseDisplay display){
+        mPresenter = controller;
     }
 
-    protected void setDisplay(BaseDisplay display){
-        mDisplay = display;
-    }
 
-    protected int setLayoutResource(){
-        return 0;
-    }
+    protected BasePresenter getPresenter(){return mPresenter;}
 
-    public void handleIntent(Context context, BaseDisplay display){
 
-    }
+    protected BaseDisplay getDisplay(){return mDisplay;}
+
+    protected abstract int setLayoutResource();
+
+    protected abstract void handleIntent(Context context, BaseDisplay display);
 
 }

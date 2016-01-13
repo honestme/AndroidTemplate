@@ -65,7 +65,7 @@ public class ApiConnector {
         params.put("advert",String.valueOf(advertiseCount));
         String access_token = ApiUtil.getAccessToken(params,API_SECRET);
         String request = String.format(INIT_REQUEST_URL,API_KEY,timeStamp,animeCount,featureCount,advertiseCount,access_token);
-        get(request, handler);
+        get(request,null, handler);
     }
 
     public void getList(int page, JsonHttpResponseHandler handler) {
@@ -77,7 +77,8 @@ public class ApiConnector {
         String access_token = ApiUtil.getAccessToken(params, API_SECRET);
         String request = String.format(ANIMATION_REQUEST_URL, API_KEY, timeStamp,
                 page, access_token);
-        get(request, handler);
+        get(request,null,handler);
+
     }
 
     public void getRandom(int count, JsonHttpResponseHandler handler) {
@@ -90,7 +91,7 @@ public class ApiConnector {
         String access_token = ApiUtil.getAccessToken(params, API_SECRET);
         String request = String.format(ANIMATION_RANDOM_URL, API_KEY, timeStamp,
                 count, access_token);
-        get(request, handler);
+        get(request,null, handler);
     }
 
     public void getDetail(int vid,JsonHttpResponseHandler handler){
@@ -101,7 +102,7 @@ public class ApiConnector {
         params.put("vid",String.valueOf(vid));
         String access_token = ApiUtil.getAccessToken(params,API_SECRET);
         String request = String.format(ANIMATION_DETAIL_URL,API_KEY,timestamp,vid,access_token);
-        get(request, handler);
+        get(request,null, handler);
     }
 
     public void getCategory(int categoryId,int page,int count,JsonHttpResponseHandler handler){
@@ -114,7 +115,7 @@ public class ApiConnector {
         params.put("limit",String.valueOf(count));
         String access_token = ApiUtil.getAccessToken(params,API_SECRET);
         String request = String.format(CATEGORY_REQUEST_URL,API_KEY,timeStamp,page,categoryId,count,access_token);
-        get(request, handler);
+        get(request,null, handler);
     }
 
     private static final String RECOMMEND_ALL_REQUEST = "http://i.animetaste.net/api/animelist_v4/?api_key=%s&timestamp=%d&feature=1&limit=%d&access_token=%s";
@@ -129,7 +130,7 @@ public class ApiConnector {
         params.put("feature",String.valueOf(1));
         String access_token = ApiUtil.getAccessToken(params,API_SECRET);
         String request = String.format(RECOMMEND_ALL_REQUEST,API_KEY,timestamp,count,access_token);
-        get(request,handler);
+        get(request,null,handler);
     }
 
     public void getCategoryRecommend(int categoryId,int count,JsonHttpResponseHandler handler){
@@ -142,6 +143,6 @@ public class ApiConnector {
         params.put("category",String.valueOf(categoryId));
         String access_token = ApiUtil.getAccessToken(params,API_SECRET);
         String request = String.format(RECOMMEND_CATEGORY_REQUEST,API_KEY,timestamp,categoryId,count,access_token);
-        get(request,handler);
+        get(request,null,handler);
     }
 }
