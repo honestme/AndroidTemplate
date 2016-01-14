@@ -5,6 +5,7 @@ android {
     buildToolsVersion '23.0.2'
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.honestme.androidtemplate"
         minSdkVersion 14
         targetSdkVersion 23
@@ -15,6 +16,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
         }
     }
 }
@@ -30,6 +34,6 @@ dependencies {
     compile 'it.neokree:MaterialTabs:0.11'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.dagger:dagger:1.2.+'
-    compile 'com.squareup.dagger:dagger-compiler:1.2.+'
     compile files('libs/android-async-http-1.4.4-fix.jar')
+    compile project(':viewpagerindicator')
 }
